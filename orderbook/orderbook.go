@@ -16,6 +16,7 @@ type Match struct {
 
 type Order struct {
 	ID        int64
+	UserID    int64
 	Size      float64
 	Bid       bool
 	Limit     *Limit
@@ -55,8 +56,9 @@ The function takes in two parameters:
 The function returns a pointer to a new Order struct,
 which has the Size, Bid, and Timestamp fields set to the provided parameters.
 */
-func NewOrder(bid bool, size float64) *Order {
+func NewOrder(bid bool, size float64, userID int64) *Order {
 	return &Order{
+		UserID:    userID,
 		ID:        int64(rand.Intn(1000000)), // Possible clashes of ID numbers
 		Size:      size,
 		Bid:       bid,
